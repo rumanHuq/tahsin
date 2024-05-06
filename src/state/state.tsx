@@ -26,9 +26,11 @@ interface State {
   instructionPageNumber: number;
   activeRandomPageIndex: number;
   setActiveRandomPageIndex: (activeRandomPageIndex: number) => void;
+  recommendationValues: string[];
+  setRecommendationValues: (recommendationValue: string) => void;
 }
 
-export const useAppState = create<State>((set) => ({
+export const useAppState = create<State>((set, state) => ({
   sessionId: randomId(),
   activePage: pages.home,
   instructionPageNumber: randomNumber(1, 3),
@@ -38,5 +40,10 @@ export const useAppState = create<State>((set) => ({
   },
   setActiveRandomPageIndex(activeRandomPageIndex) {
     set({ activeRandomPageIndex });
+  },
+  recommendationValues: [],
+  setRecommendationValues(recommendationValue) {
+    const recommendationValues = state().recommendationValues.concat(recommendationValue);
+    set({ recommendationValues });
   },
 }));
