@@ -2079,8 +2079,8 @@ export default function Recommendations() {
   };
   return (
     <div>
-      {/* @ts-expect-error it renders anyway */}
       {pages[activeRandomPageIndex] &&
+        // @ts-expect-error it will work
         recommendation[pages[activeRandomPageIndex]]({ onClick: onNavigation, instructionValues })}
       {activeRandomPageIndex + 1 === pages.length && (
         <button type="submit" onClick={() => onNavigation(undefined, true)}>
